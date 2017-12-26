@@ -1,0 +1,26 @@
+	★　担当するプログラムに関わりそうなファイル場所　★
+
+fuel >> 
+	app >> 
+		classes　※　共通となる部分（Utilクラスみたいなもの）
+
+		modules >> contents >>
+			classes >> 
+				controller ※コントローラー
+				view ※　今はよくわからない。。。
+		
+			views >> ja >>
+				※　コンテンツ毎に分かれてる。
+		
+		config >>
+			contents
+			event_common
+			event_combinedsale(セット販売)
+			scenarioevent(シナリオイベント）
+				※　よく使うやつ！
+
+	public >> assets >>
+		css
+		javascript
+		sound
+

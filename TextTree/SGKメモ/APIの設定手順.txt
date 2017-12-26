@@ -1,0 +1,22 @@
+１．Gitクローンする
+
+２．Vagrantfileの書き換え（IPアドレスの箇所）
+
+３．vagrant up
+
+４．vagrant ssh
+
+５．C:\Users\{自分のユーザID}　.vagrant.d　にもらったBoxをコピー
+\\10.1.106.112\Users\c1697\.vagrant.d\boxes
+
+６．/etc/httpd/conf.d/
+※ここのファイルを修正する
+みればわかるはず！
+
+７．vagrant 
+
+
+
+◇補足◇
+ローカルの画面でPassWordが求められる
+＞＞public/admin/.htaccessをフォルダを作成⇒入れてあげる

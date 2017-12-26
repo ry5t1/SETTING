@@ -1,0 +1,44 @@
+2017/05
+～6月シナイベ～
+
+【データ】
+◆手紙（letter_mst）
+ID:167-170
+
+◆ストーリー
+
+
+【インプットデータ修正箇所】
+◆scenario_event_mst
+=> 短縮イベント名に注意、その他参照先を確認
+
+◆scenario_event_chara_mst
+=> chara_cd を更新
+※route_typeは、scenario_event_bonus_mstの特典と合わせること！
+※通常イベントは、route_nameを入れない！BDのみroute_nameを入れる
+
+◆scenario_event_ranking_bonus_mst
+=> item_cdにエピローグアイテムで取得できるアバターを記入
+
+◆scenario_event_fever_mst
+=> フィーバー時間を更新する
+
+◆scenario_event_bonus_mst
+=> 全体的に更新
+
+◆scenario_event_bonus_present_item_mst
+=> 特典のcdを記入。item_cdやstilｌ_cd、voice_cdなど特典を記入。
+※item_cd1、item_cd2・・・末尾に数字は必須。複数個可。
+
+◆scenario_event_epilog_item_mst
+=> 全体的に更新
+※恋手紙（letter_cｄ）ありの場合のみ。
+
+◆scenario_event_help_mst
+=> 追加箇所タブから引用。追加箇所タブを修正する。
+
+◆scenario_event_wording_mst
+=> 追加箇所タブから引用。追加箇所タブを修正する。
+
+◆set_item_mst
+=> 全体的に更新

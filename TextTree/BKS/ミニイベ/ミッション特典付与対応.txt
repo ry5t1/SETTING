@@ -1,0 +1,77 @@
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+＝　その1：　ミッションクリア特典の付与対象者の抽出　＝
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+[ 確認すること ]
+①シナリオ販売の極上の贈り物のショップアイテムID
+②購入条件時間（イベント終了時間）のUNIXTIME
+③全エンドクリアのbonus_type
+
+[ 沖田・桂ミニイベ用 ]
+①shop_item_list_id：　1538, 1539
+②イベント終了時刻：　2016/07/25 16:00 ⇒　1469430000
+③bonus_type：　clear_pattern_4
+
+[ 関連テーブルについて ]
+◆ 購入履歴のテーブル
+	payment_log
+	⇒　購入しているかどうかを判別 
+
+◆イベントボーナステーブル
+	event_bonus_mng
+	⇒　ボーナスタイプを取得（全エンドクリア特典があれば全エンドクリアしたとみなす）
+	⇒　 bonus_type（エンドクリア特典の場合）　＝　clear_pattern_{pattern_count}
+
+◆イベントユーザテーブル
+	event_user_profile
+	⇒　ユーザID　・　イベントユーザID
+
+[ SQL ]（慶喜・半平太ミニイベ用）
+/*慶喜*/
+select distinct eup.user_profile_id
+from event_bonus_mng ebm
+ inner join event_user_profile eup
+ on ebm.event_user_profile_id = eup.id
+ inner join payment_log pl
+ on eup.user_profile_id = pl.user_profile_id
+where ebm.scenario_event_mst_id = 70 /*イベントID*/
+ and ebm.bonus_type = 'clear_pattern_6' /*全ENDのbonus_type*/
+ and pl.updated_at < 1509519600 /*イベント終了時刻までに購入した 2017/11/01 16:00:00*/
+ and pl.shop_item_list_id =2651; /*プレミアセット*/
+
+/*半平太*/
+select distinct eup.user_profile_id
+from event_bonus_mng ebm
+ inner join event_user_profile eup
+ on ebm.event_user_profile_id = eup.id
+ inner join payment_log pl
+ on eup.user_profile_id = pl.user_profile_id
+where ebm.scenario_event_mst_id = 70 /*イベントID*/
+ and ebm.bonus_type = 'clear_pattern_6' /*全ENDのbonus_type*/
+ and pl.updated_at < 1509519600 /*イベント終了時刻までに購入した 2017/11/01 16:00:00*/
+ and pl.shop_item_list_id =2653; /*プレミアセット*/
+
+
+齊藤：2004	
+龍馬：1922	
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+＝　その２：　抽出したuser_profile_id をテキストにコピー　＝
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+縦一列にコピーして任意の名前をつけて保存。
+保存先は、※presentSQLと同階層に保存。
+
+※presentSQL は次のステップで使用する
+
+
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+＝　その３：　SQLを作成後アイテムの付与 ＝
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+presentSQL のタブ内に説明があるので読んでやること。
+
+完成したSQLを文字化けしていないかを確認し、
+OKならば実行する。
+
+
+
+
+補足・・・・
+手順1～3　を各PFにて実行する。

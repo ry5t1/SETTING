@@ -1,0 +1,354 @@
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+	恋愛ゲームMigration導入実践・入門 
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+
++-----------------------------------------------------------------------------------------+
+	Migrationとは
++-----------------------------------------------------------------------------------------+
+ここでのMigrationとはDatabaseにおけるMigrationであること、恋愛ゲームのDatabase運用上のMigrationであることを先に断っておく
+
+運用・開発において発生するDDL文をファイルで管理すること 
+決められた作法により唯一テスト環境・本番環境のDatabaseにDDL文を実行することができる 
+すべての環境でDatabaseのスキーマを統一することができる 
+以上をMigrationの定義とする
+
++-----------------------------------------------------------------------------------------+
+	Migrationを利用する上でのメリット
++-----------------------------------------------------------------------------------------+
+一部環境に対してのDDLの実行漏れを防ぐ 
+ファイルとしてDDLの実行履歴をコミットすることができるのでレビューをしたり、問題のあったDDLの実行を追うことができる 
+ローカル・テスト・本番環境とDatabaseのスキーマ統一が容易に行える 
+(CIでユニットテストを実行するのに必須) 
+
++-----------------------------------------------------------------------------------------+
+	Migration運用を行うにあたって準備するもの
++-----------------------------------------------------------------------------------------+
+・Phinx(PHP Library) 
+・Jenkins(いつも使っているやつ) 
+
++-----------------------------------------------------------------------------------------+
+	Phinx
++-----------------------------------------------------------------------------------------+
+Migrationファイルの実行・実行管理、およびMigrationファイルのひな形生成に利用するPHP Library
+composerをつかって簡単にインストールすることができる。
+MYSQLのドライバがPDOにしか対応しておらずここがちょっと導入の際に面倒臭かったところではある
+
+（参考）
+https://phinx.org/ 
+http://qiita.com/MasatoYoshioka@github/items/08874ca7e80a12870d1b 
+
++-----------------------------------------------------------------------------------------+
+	Jenkins
++-----------------------------------------------------------------------------------------+
+Migration運用をするにあたって『決められた作法により唯一テスト環境・本番環境のDatabaseにDDL文を実行することができる』
+を保証するにあたってJenkinsを利用する
+Jenkins上にPhinxを実行させるためだけのjobを作成しビルドボタンを押すだけでMigrationを実行される環境を作る
+
+（参考）
+http://jenkins.q2s.idc.cybird.ne.jp/view/MIGRATION/job/MIGRATION_TEST/configure 
+http://jenkins.qks.idc.cybird.ne.jp/view/MIGRATION/job/MIGRATION_AMB_TEST/configure 
+
++-----------------------------------------------------------------------------------------+
+	Jenkinsの環境構築
++-----------------------------------------------------------------------------------------+
+Jenkinsのサーバーにsshログイン後rootユーザーで以下の操作を行う
+Jenkinsサーバーへのrootユーザーでのログインは原則としてプロパーが行うこと
+
+yum install php pho-devel php-pdo php-mysql
+php -i | grep pdo
+
+# timezoneを"Asia/Tokyo"
+vi /etc/php.ini
+ 
+
+後は↑の参考をもとにphinxを実行するためのjobを作成するのみ Q2Sのものを参考にする方がいいかとは思う(1jobで複数環境に対応するように作ってあるので)
+
+既存コンテンツにphinxを適用する
+先にお断り,本来はDOC_ROOTのcomposer.pharにphinxを書いてinstallするべき
+しかし、既存コンテンツはcomposerの使い方が変なのか使っていないのかよくわからないあれなので別途phinxディレクトリを作成してそこにinstallさせている
+QKS以降のタイトルではDOC_ROOTのcomposerを使ってinstallしているのでここに書いている内容とは異なる
+
++-----------------------------------------------------------------------------------------+
+	プロジェクトにphinxをinstallさせる
++-----------------------------------------------------------------------------------------+
+# 以下の操作はコンテンツのプロジェクトディレクトリのROOT_DIRを起点に操作している
+git checkout -b introduction-phinx
+git clone https://github.com/robmorgan/phinx.git
+
+# gitプロジェクトないに複数.gitができてしまって気持ち悪いので削除
+rm -rf phinx/.git
+
+cd phinx
+curl -s https://getcomposer.org/installer | php
+php composer.phar install
+
+# ここまでやれば一様installは完了
+
+# vendor, *.pharをコメンドアウトする。
+# ROOT_DIR/.gitignoreでは無いので注意
+vi .gitignore
+
+# 後は適当にコミットしてあげる
+cd ../
+git add ./phinx & git commit -m 'clone phinx’
+ 
+
++-----------------------------------------------------------------------------------------+
+	phinxのconfigファイルを作成
++-----------------------------------------------------------------------------------------+
+configファイルにはDatabaseの接続情報を書く
+アプリケーション内にあるDatabaseのconfigとはそもそも用途が違ったり、ユーザー情報なども異なるので別途管理する必要がある
+
+# ファイルを作成するのはROOT_DIR直下
+vi ./phinx.yml
+git add ./phinx.yml & git commit -m 'migrationのconfigを作成'
+ 
+
++-----------------------------------------------------------------------------------------+
+	configはこんなかんじで書いていく. 注意点は以下
++-----------------------------------------------------------------------------------------+
+test環境のDatabase Hostの指定にはGIPで指定する必要がある(裏でrootingしていないため. できているコンテンツもあるのでできているところはLIP使ってね. QKS以前のタイトルは全部ダメ) 
+{ENVIRONMENT}.{PLATFORM}は一様命名規則でお願いしています 
+xxx_batユーザーを使ってください 
+
+  paths:
+    migrations: %%PHINX_CONFIG_DIR%%/migrations
+
+    environments:
+        default_migration_table: phinxlog
+        default_database: development.amb
+
+    development.amb:
+        adapter: mysql
+        host: localhost
+        name: Q2SAMBDB
+        user: q2s_amb_bat
+        pass: 'q2s_amb_batpass201409'
+        port: 3306
+        charset: utf8
+
+    test.amb:
+        adapter: mysql
+        host: 210.140.145.180
+        name: Q2SAMBDB_T
+        user: q2s_amb_bat
+        pass: 'q2s_amb_batpass201409'
+        port: 3306
+        charset: utf8
+
+    production.amb:
+        adapter: mysql
+        host: 10.130.10.102
+        name: Q2SAMBDB
+        user: q2s_amb_bat
+        pass: 'q2s_amb_batpass201409'
+        port: 3306
+        charset: utf8
+
+    development.app:
+        adapter: mysql
+        host: localhost
+        name: Q2SAMBDB
+        user: q2s_amb_bat
+        pass: 'q2s_amb_batpass201409'
+        port: 3306
+        charset: utf8
+
+    test.app:
+        adapter: mysql
+        host: 210.140.145.180
+        name: Q2SAMBDB_T
+        user: q2s_amb_bat
+        pass: 'q2s_amb_batpass201409'
+        port: 3306
+        charset: utf8
+
+    production.app:
+        adapter: mysql
+        host: 10.130.10.102
+        name: Q2SAMBDB
+        user: q2s_amb_bat
+        pass: 'q2s_amb_batpass201409'
+        port: 3306
+        charset: utf8
+ 
++-----------------------------------------------------------------------------------------+
+	phinxコマンドの使い方
++-----------------------------------------------------------------------------------------+
+# Migrationファイルのひな形を作成する
+# XxxMigrationとなるように先頭大文字CamelCaseで書きます
+
+php phinx/bin/phinx create HogeMigration
+
+# Migrationを実行する
+# php phinx/bin/phinx migrate -e amb.test
+
+php phinx/bin/phinx migrate -e {ENVIRONMENT}
+
+
++-----------------------------------------------------------------------------------------+
+	migrationコマンドにおける注意点
++-----------------------------------------------------------------------------------------+
+Migrationにおいてはロールバックさせるコマンドもあるが原則としてコレの利用は禁止します。
+ロールバックさせたい場合はロールバックさせるための新しいMigrationファイルを作成して下さい
+
+Migrationファイルのサンプル
+↑の注意点に沿うとAbstractmigration::upのみの実装で良い 
+スキーマ作成用のヘルパーメソッドはあるが、柔軟なことができない、読みづらいので原則利用禁止 
+ # 例えば適当にテーブルを3つ作るMigration
+<?php
+
+	use Phinx\Migration\AbstractMigration;
+
+	class CreateTableAppentryLogMigration extends AbstractMigration
+	{
+	    /**
+	     * Migrate Up.
+	     */
+	    public function up()
+	    {
+	        $sql_list = [
+	          "
+	         CREATE TABLE `tableA` (
+	           `id` int(11) NOT NULL AUTO_INCREMENT,
+	           `opensocial_user_id` varchar(255) NOT NULL,
+	           `from_site_id` int(11) NOT NULL COMMENT '事前登録元サイトID',
+	           `to_site_id` int(11) NOT NULL COMMENT '事前登録先サイトID',
+	           `entry_date` int(11) NOT NULL COMMENT '事前登録日',
+	           `regist_date` int(11) DEFAULT NULL COMMENT 'アプリ開始日',
+	           `tutorial_clear_date` int(11) DEFAULT NULL COMMENT 'チュートリアルクリア日',
+	           `icon_id` varchar(2) DEFAULT NULL,
+	           `created_at` int(11) NOT NULL,
+	           `updated_at` int(11) NOT NULL,
+	           PRIMARY KEY (`id`)
+	         ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+	         ",
+	          "
+	         CREATE TABLE `tableB` (
+	           `id` int(11) NOT NULL AUTO_INCREMENT,
+	           `opensocial_user_id` varchar(255) NOT NULL,
+	           `from_site_id` int(11) NOT NULL COMMENT '事前登録元サイトID',
+	           `to_site_id` int(11) NOT NULL COMMENT '事前登録先サイトID',
+	           `entry_date` int(11) NOT NULL COMMENT '事前登録日',
+	           `regist_date` int(11) DEFAULT NULL COMMENT 'アプリ開始日',
+	           `tutorial_clear_date` int(11) DEFAULT NULL COMMENT 'チュートリアルクリア日',
+	           `icon_id` varchar(2) DEFAULT NULL,
+	           `created_at` int(11) NOT NULL,
+	           `updated_at` int(11) NOT NULL,
+	           PRIMARY KEY (`id`)
+	         ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+	         ",
+	          "
+	         CREATE TABLE `tableC` (
+	           `id` int(11) NOT NULL AUTO_INCREMENT,
+	           `opensocial_user_id` varchar(255) NOT NULL,
+	           `from_site_id` int(11) NOT NULL COMMENT '事前登録元サイトID',
+	           `to_site_id` int(11) NOT NULL COMMENT '事前登録先サイトID',
+	           `entry_date` int(11) NOT NULL COMMENT '事前登録日',
+	           `regist_date` int(11) DEFAULT NULL COMMENT 'アプリ開始日',
+	           `tutorial_clear_date` int(11) DEFAULT NULL COMMENT 'チュートリアルクリア日',
+	           `icon_id` varchar(2) DEFAULT NULL,
+	           `created_at` int(11) NOT NULL,
+	           `updated_at` int(11) NOT NULL,
+	           PRIMARY KEY (`id`)
+	         ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+	         ",
+	      ];
+	      foreach($sql_list as $sql)
+	      {
+	          $this->execute($sql);
+	      }
+	    }
+	}
+
++-----------------------------------------------------------------------------------------+
+	Migrationファイルの実行履歴管理
++-----------------------------------------------------------------------------------------+
+migrationの実行履歴はDatabase.phinxlogテーブルで管理されている
+ここでmigrationファイル1つ1つの実行時間を記録しており、migrateコマンド実行時にはcommitされているが実行していないMigrarionファイルを抽出し実行している
+
+	CREATE TABLE `phinxlog` (
+	  `version` bigint(20) NOT NULL,
+	  `start_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	  `end_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ 
+
++-----------------------------------------------------------------------------------------+
+	運用コンテンツにMigrationを適用させるにあたって
++-----------------------------------------------------------------------------------------+
+Migrationを導入する際にすでにコンテンツが運用されておりテーブルが有る場合は存在するテーブルすべてのDDLのmigrationを作成する必要がある
+
+（参考）
+https://github.com/CYBIRD/LoveSocialNativeEngine/blob/master/migrations/20141126144646_init_migration.php
+
+またmigration作成後にphinxlogテーブルを直接弄ってこのmigrationが実行されたことにする必要がある
+↑のファイルが例だとこんな感じ
+
+	INSERT INTO `phinxlog` (`version`, `start_time`, `end_time`)
+	VALUES
+	  (20141126144646, '2015-04-28 12:19:03', '2015-04-28 12:19:12');
+	Posted by keitaro-onishi Jun 9th, 2015   database 
+
+
+
+ALTER TABLE user_setting ADD stamina_notification tinyint(1) NOT NULL DEFAULT '0' AFTER birthday_disp_mode;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
++-----------------------------------------------------------------------------------------+
+≪ 【最強】Node.js勉強会 5回目：Node.jsでサーバーを立てる 
+Recent Posts
+恋愛ゲームMigration導入実践・入門
+ 
+【最強】Node.js勉強会 5回目：Node.jsでサーバーを立てる
+ 
+Node.js勉強会 MongoDB * Mongoose
+ 
+Node.js勉強会（npm Packageを適当に探してきた編）
+ 
+【最強】Node.js勉強会 3回目：JavaScriptのModule化
+ 
+Categories
+2 sample 
+1 octopress 
+1 js, 
+1 marionette 
+1 js 
+1 vue.js 
+1 phalcon 
+1 mysql 
+4 redis 
+1 php 
+1 webapi 
+5 javascript 
+3 コードレビュー 
+2 ユニットテスト 
+1 casperjs 
+1 javascript, 
+1 node.js, 
+3 社内勉強会 
+4 node.js 
+1 database 
+Copyright c 2015 - CYBIRD 恋愛技術チーム
+Powered by Octopress, customized with octostrap3. 

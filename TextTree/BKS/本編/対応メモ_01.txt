@@ -1,0 +1,28 @@
+[確認]
+select * from collection_ranking_bonus
+	where collection_mst_id = 17;
+
+[ アップデート ]
+UPDATE collection_ranking_bonus a
+SET a.description = '「襲来！新松下村塾」◆最終ランキング特典(100位以内)'
+where a.collection_mst_id = 17 and a.to = 100;
+
+UPDATE collection_ranking_bonus a
+SET a.description = '「襲来！新松下村塾」◆最終ランキング特典(200位以内)'
+where a.collection_mst_id = 17 and a.to = 200;
+
+UPDATE collection_ranking_bonus a
+SET a.description = '「襲来！新松下村塾」◆最終ランキング特典(300位以内)'
+where a.collection_mst_id = 17 and a.to = 300;
+
+UPDATE collection_ranking_bonus a
+SET a.description = '「襲来！新松下村塾」◆最終ランキング特典(500位以内)'
+where a.collection_mst_id = 17 and a.to = 500;
+
+UPDATE collection_ranking_bonus a
+SET a.description = '「襲来！新松下村塾」◆最終ランキング特典(800位以内)'
+where a.collection_mst_id = 17 and a.to = 800;
+
+UPDATE collection_ranking_bonus a
+SET a.description = '「襲来！新松下村塾」◆最終ランキング特典(3000位以内)'
+where a.collection_mst_id = 17 and a.to = 3000;

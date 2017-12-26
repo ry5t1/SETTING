@@ -1,0 +1,6 @@
+// ログイン
+http://a1r1k2.wp.xdomain.jp/wp-login.php/
+
+// ブランチ
+http://a1r1k2.wp.xdomain.jp/2016/05/12/git-branch/
+

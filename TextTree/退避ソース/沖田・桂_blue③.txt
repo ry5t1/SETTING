@@ -1,0 +1,32 @@
+	<!-- ENDを迎えてアバターGET☆ -->
+	<div style="margin:5px 0px;">
+		<div class="title_area">
+			<div style="padding:2px">
+				<hr size=1 width="95%" color="#ffffff;" style="border-top-color:#ffffff;">
+			</div>
+			<div  class="shadow">
+				<span style="color:#fefefe;font-weight: bold;">ENDを迎えて限定衣装をGET♡</span>
+			</div>
+			<div style="padding:2px">
+				<hr size=1 width="95%" color="#ffffff;" style="border-top-color:#ffffff;">
+			</div>
+		</div>
+		<?php if($up->timestamp() < strtotime('2016-07-21 00:00:00')):?>
+			<?php echo $util->getImageTag('event/scenarioevent/'.$view_data['scenario_event_mst']['id'], 'sample_avatar',array('width' => '100%'))?>
+		<?php else:?>
+			<?php echo $util->getImageTag('event/scenarioevent/'.$view_data['scenario_event_mst']['id'], 'sample_avatar_2',array('width' => '100%'))?>
+		<?php endif;?>
+		<div style="text-align:left; padding:5px;">
+			イベント限定アバターをすべてGETすると、こんなに可愛い<span style="color:<?php echo $base_color['txtcolor3']?>;">沖田・桂の生誕記念コーデ</span>が完成♪
+		</div>
+		<!-- 参加ボタン -->
+		<div id="entry_area_top"  class="p5 mb5" style="margin-top:10px;">
+			<?php echo $util->getLinkTag(
+				Uri::base(FALSE).Config::get('system_name').'/event/scenarioevent/story/select_story_lesson/'.$view_data['tutorial_flash_ticket_id'].'?finish_url='.urlencode(
+					\Uri::base(FALSE).Config::get('system_name').'/event/scenarioevent/mypage/show_event_mypage/'.$view_data['scenario_event_mst_id']
+				),
+				$util->getImageTag('event/scenarioevent/'.$view_data['scenario_event_mst']['id'], 'entry_btn'),
+				array('class' => 'play_sound_new_game_start')
+			)?>
+		</div>
+	</div>

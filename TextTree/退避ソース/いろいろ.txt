@@ -1,0 +1,4 @@
+**********************************
+*  ボーダーに色をつける
+**********************************
+ <hr size=1 width="90%" color="<?php echo $base_color['txtcolor3']?>" style="border-top-color:<?php echo $base_color['txtcolor3']?>;"

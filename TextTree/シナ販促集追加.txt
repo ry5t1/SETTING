@@ -1,0 +1,24 @@
+	①　カラムをDBへ追加
+		ALTER TABLE テーブル名 ADD 追加カラム名 型　AFTER 既存カラム
+
+	②　モデルクラスに追加
+		[ model ]
+		app/classes/model/campaign/mst.php
+
+	③　バナー遷移ページを作成
+		[ URL ]
+		新規：　/event/storysale/storysale_promotion_view.php
+
+	④　最後にチェックボックスを追加
+		[ View ]
+		app/modules/admin/views/campaign/campaign_new_view.php
+
+
+	マークブレイク
+	トップページ
+	幕末スタンプ　を参考
+
+	バナー表示する一覧のデータはどれ
+	story_top_viewはどこ
+
+	

@@ -1,0 +1,22 @@
+/**************************::
+* キャラマスタに追加する
+**************************/
+INSERT INTO chara_mst(id,chara_route_cd,chara_orig_id,`order`,chara_name,chara_fullname)
+VALUES(15, 0, 0, 15, '半平太', '武市半平太');
+INSERT INTO chara_mst(id,chara_route_cd,chara_orig_id,`order`,chara_name,chara_fullname)
+VALUES(16, 0, 0, 16, '以蔵', '岡田以蔵');
+INSERT INTO chara_mst(id,chara_route_cd,chara_orig_id,`order`,chara_name,chara_fullname)
+VALUES(17, 0, 0, 17, '松陰', '吉田松陰');
+
+/***********************
+*  キャラマスタを更新
+************************/
+UPDATE chara_mst
+	SET 
+		/*chara_route_cd = '0', 
+		chara_orig_id = '0', 
+		`order` = '15',
+		chara_name = '半平太',*/
+		chara_fullname = '藤堂平助'
+		/*`start` = ''*/
+	WHERE id = 14;

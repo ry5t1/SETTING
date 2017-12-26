@@ -1,0 +1,71 @@
+*******************************************
+* 全エピローグ特典をエピローグ購入完了画面で確認する
+*******************************************
+/*/　購入履歴を削除する /*/
+select * from user_buy_story
+	where user_profile_id=589862;
+
+/*/ 特典の履歴を削除する /*/
+select * from present1
+	where user_profile_id =589862;
+
+/*/ 全エピローグ特典クリアログを削除する /*/
+select * from event_bonus_mng 
+	where scenario_event_mst_id = 48;
+
+
+
+****************
+* 予告のログを取得
+****************
+関連テーブル：　user_story_read_log
+
+手順１．テーブルの作成
+＞＞　これは対応済みだった。
+＞＞　※{id}系のやつは、model　+　Lib 
+
+手順２．announce.php 
+＞＞　lib_util->inUserStoryReadlog(チケットID, ユーザID)を使用する
+
+※　View側でfinish_urlを指定していたが、うまくいかなかなった。
+　　 Controller側で指定して対応した。
+
+
+*****************
+* 予告ログの確認
+*****************
+select * from user_story_read_log2
+	where ticket_mst_id = 10432
+
+
+
+*********************************
+* エピローグ消費コインが相違(250 or 400)
+*********************************
+View
+①　epilog/scenarioevent_story_ending_view.php
+②　epilog/scenarioevent_story_epilog_view.php
+③　story/scenarioevent_story_ending_view.php
+④　story/scenarioevent_story_epilog_view.php
+
+べた書きでエピローグの値段が記載されてあるので、
+修正必要な場合は修正する。
+
+
+************************************
+* 50コインセットのヘッダ文言がコインになっている
+************************************
+管理画面＞＞セット販売アイテム登録＞＞セットアイテムヘッダ文言
+
+※　他PF時に、コインとして反映されるため、手動でポイントに
+変更しないといけない。
+// 関連テーブル
+select * from event_set_sale_item 
+	where event_set_sale_mst_id = 
+	(select id from event_set_sale_mst 
+	where scenario_event_mst_id = 48)；
+
+
+
+
+

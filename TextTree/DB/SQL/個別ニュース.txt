@@ -1,0 +1,5 @@
+*************************:
+*  個別にユーザへのニュース
+*************************
+INSERT INTO user_notice_mng(user_profile_id,notice_text, start, end)
+VALUES(446483,'文言を入れる',1476673200,1476846000);

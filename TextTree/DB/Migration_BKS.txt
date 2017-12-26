@@ -1,0 +1,93 @@
+～BKSで実施したマイグレーション設定の流れ～
+
+◆gitgnoreの設置
+vi .gitgnore
+
+
+◆テーブルの追加
+	CREATE TABLE `phinxlog` (
+	  `version` bigint(20) NOT NULL,
+	  `start_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	  `end_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+◆テーブルにレコードを追加
+
+◆phinxのインストール
+※composerのアップデートでできない場合のみ下記を実行（＊１）
+# 以下の操作はコンテンツのプロジェクトディレクトリのROOT_DIRを起点に操作している
+git checkout -b introduction-phinx
+git clone https://github.com/robmorgan/phinx.git
+
+# gitプロジェクトないに複数.gitができてしまって気持ち悪いので削除
+rm -rf phinx/.git
+
+cd phinx
+curl -s https://getcomposer.org/installer | php
+php composer.phar install
+
+# ここまでやれば一様installは完了
+
+# vendor, *.pharをコメンドアウトする。
+# ROOT_DIR/.gitignoreでは無いので注意
+vi .gitignore
+
+# 後は適当にコミットしてあげる
+cd ../
+git add ./phinx & git commit -m 'clone phinx’
+
+◆composer.jsonの編集（＊２）
+{
+    "require-dev":{
+        "robmorgan/phinx": "*"
+    }
+}
+
+◆composer.pharをダウンロード（＊２）
+$curl -s http://getcomposer.org/installer | php
+
+$php composer.phar install
+エラーがおきるので、下記コマンドで先にアップデートをする
+$php composer.phar update
+が。。。
+ここでもエラー。
+
+// コンポーザーをアップデート
+$php composer.phar self-update
+
+// 部分的にパッケージの追加
+$php composer.phar require robmorgan/phinx
+↓
+phinxがインストールできた。
+fuel/vendorの配下にrobmorganフォルダが生成されて、
+そこにphinxがインストールされる。
+
+◆phinxのconfigファイルの生成と修正
+（＊１の場合）ファイルを作成するのはROOT_DIR直下
+vi ./phinx.yml
+configファイルの修正
+
+（＊２の場合）は以下の手順
+①phinx.ymlファイルの作成
+fuel/vendor/bin/phinx init
+
+②生成したphinx.ymlを修正
+[修正内容]
+migrationフォルダのURLの修正（ここではまだmigrationフォルダはない）
+DBの設定を各PFと環境で記載
+
+
+◆migrationフォルダの作成
+DOCROUTE直下に作成する
+
+
+
+
+
+◆Migrationファイルの雛形を作成しようとしたが失敗
+fuel/bin/phinx create HogeMigration
+
+
+
+
+※ここでエラーがでてる

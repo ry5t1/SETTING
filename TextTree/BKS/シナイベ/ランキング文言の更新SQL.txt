@@ -1,0 +1,61 @@
+[ 確認用 ]
+select * from event_ranking_bonus a where a.scenario_event_mst_id = 48;
+
+/* 中間ランキング */
+SET @scenario_event_mst_id = 72;
+UPDATE event_ranking_bonus a
+SET a.description = '「イベント 維新志士と運命の恋」◆中間ランキング特典(100位以内)'
+where a.scenario_event_mst_id = @scenario_event_mst_id
+ and a.to = 100 and a.ranking_type = 1;
+UPDATE event_ranking_bonus a
+SET a.description = '「イベント 維新志士と運命の恋」◆中間ランキング特典(200位以内)'
+where a.scenario_event_mst_id = @scenario_event_mst_id
+ and a.to = 200 and a.ranking_type = 1;
+UPDATE event_ranking_bonus a
+SET a.description = '「イベント 維新志士と運命の恋」◆中間ランキング特典(300位以内)'
+where a.scenario_event_mst_id = @scenario_event_mst_id
+ and a.to = 300 and a.ranking_type = 1;
+
+
+/* 通常ランキング */
+SET @scenario_event_mst_id = 72;
+UPDATE event_ranking_bonus a
+SET a.description = '「復刻　野獣イベント」◆最終ランキング特典(100位以内)'
+where a.scenario_event_mst_id = @scenario_event_mst_id 
+ and a.to = 100 and a.ranking_type = 0;
+ UPDATE event_ranking_bonus a
+SET a.description = '「復刻　野獣イベント」◆最終ランキング特典(150位以内)'
+where a.scenario_event_mst_id = @scenario_event_mst_id 
+ and a.to = 150 and a.ranking_type = 0;
+UPDATE event_ranking_bonus a
+SET a.description = '「復刻　野獣イベント」◆最終ランキング特典200位以内)'
+where a.scenario_event_mst_id = @scenario_event_mst_id
+ and a.to = 200 and a.ranking_type = 0;
+UPDATE event_ranking_bonus a
+SET a.description = '「復刻　野獣イベント」◆最終ランキング特典(300位以内)'
+where a.scenario_event_mst_id = @scenario_event_mst_id
+ and a.to = 300 and a.ranking_type = 0;
+UPDATE event_ranking_bonus a
+SET a.description = '「復刻　野獣イベント」◆最終ランキング特典(400位以内)'
+where a.scenario_event_mst_id = @scenario_event_mst_id 
+ and a.to = 400 and a.ranking_type = 0;
+UPDATE event_ranking_bonus a
+SET a.description = '「復刻　野獣イベント」◆最終ランキング特典(500位以内)'
+where a.scenario_event_mst_id = @scenario_event_mst_id
+ and a.to = 500 and a.ranking_type = 0;
+UPDATE event_ranking_bonus a
+SET a.description = '「復刻　野獣イベント」◆最終ランキング特典(700位以内)'
+where a.scenario_event_mst_id = @scenario_event_mst_id 
+ and a.to = 700 and a.ranking_type = 0;
+UPDATE event_ranking_bonus a
+SET a.description = '「復刻　野獣イベント」◆最終ランキング特典(1000位以内)'
+where a.scenario_event_mst_id = @scenario_event_mst_id
+ and a.to = 1000 and a.ranking_type = 0;
+UPDATE event_ranking_bonus a
+SET a.description = '「復刻　野獣イベント」◆最終ランキング特典(2000位以内)'
+where a.scenario_event_mst_id = @scenario_event_mst_id
+ and a.to = 2000 and a.ranking_type = 0;
+UPDATE event_ranking_bonus a
+SET a.description = '「復刻　野獣イベント」◆最終ランキング特典(5000位以内)'
+where a.scenario_event_mst_id = @scenario_event_mst_id
+ and a.to = 5000 and a.ranking_type = 0;

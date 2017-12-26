@@ -1,0 +1,9 @@
+//新規ブランチ作成（名前は規則がある→名前/任意）
+$ mk_branch_by_master.sh araki/sample
+### 現在のbranch一覧 ###
+* araki/sample
+  master
+  test
+
+//localのファイルとテストサーバの差分を一時的に反映してくれるシェル。
+$ vsync.v2.sh amb

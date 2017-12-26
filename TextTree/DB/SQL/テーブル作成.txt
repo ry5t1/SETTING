@@ -1,0 +1,127 @@
+CREATE TABLE `user_specialbonus` (
+				`id` INT(11) NOT NULL AUTO_INCREMENT,
+				`user_profile_id` INT(11) NOT NULL COMMENT 'ユーザープロフィールID',
+				`specialbonus_mst_id` INT(11) NOT NULL COMMENT 'スペシャルボーナスのID',
+				`continuous_login_count` INT(11) NULL DEFAULT NULL COMMENT '連続ログイン日数',
+				`bonus_receive_noticed_flg` TINYINT(1) NOT NULL DEFAULT 0 COMMENT 'ボーナスのプレゼント内容を通知したかのフラグ',
+				`story_read_flg` TINYINT(1) NULL DEFAULT 0 COMMENT '当日メッセージを読んだかのフラグ',
+				`last_logined_at` INT(11) NULL DEFAULT NULL COMMENT '最終ログイン日時',
+				`created_at` INT(11) NULL DEFAULT NULL,
+				`updated_at` INT(11) NULL DEFAULT NULL,
+				PRIMARY KEY (`id`),
+				INDEX(`user_profile_id`),
+				INDEX(`specialbonus_mst_id`),
+				INDEX(`continuous_login_count`)
+			) COLLATE='utf8_general_ci' ENGINE=InnoDB COMMENT='ユーザーのスペシャルボーナス取得情報';
+
+
+------------------
+序章のログのテーブル
+------------------
+CREATE TABLE `user_prologue_read_log` (
+				`id` INT(11) NOT NULL AUTO_INCREMENT,
+				`user_profile_id` INT(11) NOT NULL COMMENT 'ユーザープロフィールID',
+				`douran_read_flg` TINYINT(1) NULL COMMENT '動乱の恋篇の序章を読んだかどうかのフラグ',
+				`created_at` INT(11) NULL DEFAULT NULL,
+				`updated_at` INT(11) NULL DEFAULT NULL,
+				PRIMARY KEY (`id`),
+				INDEX(`user_profile_id`)
+			) COLLATE='utf8_general_ci' ENGINE=InnoDB COMMENT='ユーザの序章の読了ログ';
+
+
+
+**************************************
+　デバッグユーザー課金ログ(2017.09)
+**************************************
+CREATE TABLE `payment_log_debug` (
+	`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`payment_log_id` int(11) NOT NULL,
+	`user_profile_id` int(11) NOT NULL,
+	`payment_at` int(11) NOT NULL,
+	`created_at` int(11) DEFAULT NULL,
+	`updated_at` int(11) DEFAULT NULL,
+	primary key (`id`),
+	index `payment_log_debug_idx1` (`payment_log_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+【※補足※】
+・コメントは記載していない。
+・collate(半角/全角の同一視)は使用せず、charsetにしている
+
+
+****************************************
+　ラッキーログボマスタ(2017.10)
+****************************************
+CREATE TABLE `lucky_loginbonus_mst` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL, /*タイトル*/
+  `start` int(11) NOT NULL, /*開始日時*/
+  `end` int(11) DEFAULT NULL, /*終了日時*/
+  `other_platform_sync` varchar(64) NOT NULL, /*対象PF*/
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `lucky_loginbonus_mst_index_01` (`start`) USING BTREE,
+  KEY `lucky_loginbonus_mst_index_02` (`end`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ラッキーログボマスタ';
+
+【※補足※】
+stamp_mstを踏襲
+
+
+****************************************
+　ラッキーログボアイテムリスト(2017.10)
+****************************************
+CREATE TABLE `lucky_loginbonus_item` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `lucky_loginbonus_mst_id` int(11) NOT NULL, /*ラッキーログボマスタID*/
+  `item_mst_id` int(11) NOT NULL,/*アイテムID*/
+  `grant_num` int(11) NOT NULL,/*付与個数*/
+  `modal_type` int(11) NOT NULL DEFAULT '0', /*ポップアップモーダルタイプ*/
+  `receive_msg` varchar(255) NOT NULL, /*受け取り文言*/
+  `hold_limit` int(11) NOT NULL, /*受け取り期限*/
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `lucky_loginbonus_item_index_01` (`lucky_loginbonus_mst_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ラッキーログボアイテム';
+
+【※補足※】
+stamp_conditionを踏襲
+
+
+****************************************
+　ラッキーログボモーダルマスタ(2017.10)
+****************************************
+CREATE TABLE `lucky_loginbonus_modal_mst` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(64) DEFAULT NULL,
+  `title_band` int(11) NOT NULL DEFAULT '0',
+  `content` varchar(2048) DEFAULT NULL,
+  `frame` int(11) NOT NULL DEFAULT '0',
+  `close_type` int(11) DEFAULT '1',
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ラッキーログボモーダルマスタ';
+
+【※補足※】
+news_modal_mstを踏襲
+
+
+****************************************
+　ラッキーログボモーダルログ(2017.10)
+****************************************
+CREATE TABLE `lucky_loginbonus_modal_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `lucky_loginbonus_modal_mst_id` int(11) NOT NULL,
+  `user_profile_id` int(11) NOT NULL,
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `lucky_loginbonus_modal_log_idx1` (`user_profile_id`),
+  KEY `lucky_loginbonus_modal_log_idx2` (`lucky_loginbonus_modal_mst_id`)
+) ENGINE=InnoDB CHARSET=utf8 COMMENT='ラッキーログボモーダルログ';
+
+【※補足※】
+news_modal_logを踏襲

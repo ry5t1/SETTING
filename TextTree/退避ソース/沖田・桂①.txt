@@ -1,0 +1,24 @@
+	<!-- イベント応援企画特典 -->
+	<div style="margin:5px 0px;">
+		<div class="title_area">
+			<div style="padding:2px">
+			<hr size=1 width="95%" color="#ffffff;" style="border-top-color:#ffffff;">
+			</div>
+			<div  class="shadow">
+				<span style="color:#fefefe;font-weight: bold;">応援企画で“お部屋に来る彼”GET♥</span>
+			</div>
+			<div style="padding:2px">
+			<hr size=1 width="95%" color="#ffffff;" style="border-top-color:#ffffff;">
+			</div>
+		</div>
+		<div>
+		<?php echo $util->getImageTag('event/scenarioevent/'.$view_data['scenario_event_mst']['id'], 'cheer_bonus', array('style'=>'width:100%')); ?>
+		</div>
+		<div style="margin-top:5px;text-align:left;padding:5px">
+			彼への<span style="color:<?php echo $base_color['txtcolor3']?>;">恋する気持ち</span>を集めると、初登場！【<span style="color:<?php echo $base_color['txtcolor3']?>;">沖田・桂生誕記念イベント限定</span>】<span style="color:<?php echo $base_color['txtcolor3']?>;">お部屋に来る沖田・桂</span>が貰えるよ♪
+			<span style="color:<?php echo $base_color['txtcolor3']?>;">彼のお手製風船</span>や<span style="color:<?php echo $base_color['txtcolor3']?>;">あにまる柄の髪飾り</span>もGETのチャンス♥
+		</div>
+		<div class="chara_select_btn_2 " style="text-align:center;margin-left:57px;margin-bottom:10px;width:60%;">
+			<?php echo $util->getLinkTag(Uri::base(FALSE).Config::get('system_name').'/event/scenarioevent/collection/index/'.$view_data['scenario_event_mst_id'],'<span class="blinking" style="color: '. $base_color['txtcolor3'].';font-weight: bold;">♥<span style="color:#ffffff;font-weight: bold;">応援企画をチェック</span>♥</span>', array('style'=>' text-decoration: none;'))?>
+		</div>
+	</div>

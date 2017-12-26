@@ -1,0 +1,33 @@
+// APIをローカルへ向ける
+WEB
+config/development.app/api.yml
+urlを変更
+url: 'http://local.api.app.sgk.idc.cybird.ne.jp' 　※ローカル環境
+url: 'https://t-api-app.ikemen-sengoku.jp'    ※テスト環境
+
+
+// ログへの出力
+test環境
+◆接続
+ｃｄ
+cd .ssh
+vi config
+でつなぎたいPFを確認する
+ssh {{ つなぎたいPFの省略コマンド }}
+
+◆ソース
+\Log::debug();
+または
+\Log::error();
+※var_dumpは使えないので「print_r(出力文字,ture)」で記載
+
+＝＞出力先
+☆テスト環境
+app/current/logs/2017/05/24.php
+または
+app/shared/logs/2017/05/24.php
+※currentもsharedも同じ。sharedの方がよい（シンボリックリンクなので）
+★ローカル
+vagrant ssh
+cd SGK_API
+tailf logs/2017/mm/dd.php

@@ -1,0 +1,11 @@
+<h2>Git エラー | unable to write new index file </h2>
+<div text_base">
+タイトル説明
+</div>
+
+<hr class="border" />
+
+<h3>サブタイトル</h3>
+<div class="text_base"></div>
+
+&nbsp;

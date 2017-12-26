@@ -1,0 +1,73 @@
+h2 {
+    font-size: 80% !important;
+    color: #ffffe0 !important;
+    margin: 10px 0px !important;
+    padding: 5px 15px !important;
+    border: 2px dashed #d6e9ca !important;
+    border-radius: 5px !important;
+    box-shadow: 0 0 3px 3px #1E90FF !important;
+    text-shadow: 0 0 1px !important;
+    background-color: #1E90FF !important;
+    margin-bottom: 15px !important;
+}
+h3 {
+　　font-size: 60% !important;
+     border-left:7px solid #1E90FF;
+     border-bottom: 1px solid #cccccc !important;
+     padding:.6em .8em;
+     margin-bottom: 10px;
+}
+.block {
+    position: relative;
+    background: #fff;
+    padding: 20px;
+    z-index: 10;
+    top: 0;
+    left: 0;
+}
+.block:before, .block:after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    box-shadow: 0 1px 4px #aaa;
+    -moz-box-shadow: 0 1px 4px #aaa;
+    -webkit-box-shadow: 0 1px 4px #aaa;
+}
+.block:before {
+    background: rgba(255,255,255,0.5);
+    top: 0;
+    left: 0;
+    z-index: -10;
+}
+.block:after {
+    background: #87cefa;
+    top: 8px;
+    left: 8px;
+    z-index: -20;
+}
+  .border {
+    border-bottom: 1px solid #1E90FF;
+    -webkit-box-shadow: 0 1px 0 #fcfcfc;
+    -moz-box-shadow: 0 1px 0 #fcfcfc;
+    box-shadow: 0 1px 0 #fcfcfc;
+  }
+/********************************
+*	タブレット以上
+*******************************/
+@media all and (min-width: 480px) {
+	.text_base {
+	    font-size: 14px;
+	}
+}
+/********************************
+*	スマートフォン
+*******************************/
+@media all and (max-width: 480px) {
+	.text_base {
+	    font-size: 12px;
+	}
+}

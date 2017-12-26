@@ -1,0 +1,11 @@
+	右上のところから　＞＞　Settings
+
+	左の　＞＞　SSH keys
+
+	New　SSH　Keys　を選択
+
+	title : 適当な（SBSなど）
+	Pass　:　id_rsa_pub　をエディタ等で開いて中身をコピー　＆　ペースト　＆　サイトの改行を消す
+
+	
+	※　id_rsa_pubについては、エクセルの開発手順に記載されている。

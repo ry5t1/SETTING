@@ -1,0 +1,19 @@
+デバック時に登録したユーザを対象に全PF実施。
+
+①event_parameter_middle_ranking
+※　該当イベントのみ（過去のがのこっているため）
+
+②event_parameter_ranking_odd or even
+
+③event_usre_profile
+
+
+例））
+select * from event_parameter_ranking_even
+	where scenario_event_mst_id = 48;
+
+select * from event_user_profile
+	where scenario_event_mst_id = 48;
+
+select * from event_parameter_middle_ranking
+	where scenario_event_mst_id = 48;

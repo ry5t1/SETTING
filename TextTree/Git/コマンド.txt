@@ -1,0 +1,29 @@
+	//自分のワークスペースへ移動する
+	$ cd /cygdrive/c/work/workspace
+
+	//SBSのmasterをクローンする
+	$ git clone git@github.com:CYBIRD/SBS.git
+
+	//フェッチ（最新の履歴の取得のみ）
+	git fetch
+
+	//ステータス確認
+	git status
+
+	//local　ブランチを確認
+	$ git branch
+
+	//Git　ブランチを確認（サーバ上のもの）
+	$ git branch -a
+
+	//「test」ブランチを作成する
+	$ git checkout -b test origin/test
+
+	//ユーザ名登録
+	$ git config --global user.name "vi-ryouta-araki"
+
+	//メールアドレス登録
+	$ git config --global user.email "ryouta-araki@vitals.co.jp"
+
+	// ブランチの削除
+	git branch -d {ブランチ名}

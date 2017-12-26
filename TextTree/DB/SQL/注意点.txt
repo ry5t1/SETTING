@@ -1,0 +1,3 @@
+検索に使用するid（ticket_mst_idやchapter_mst_cd）などは
+マジックナンバーにする。
+⇒Configに作成する

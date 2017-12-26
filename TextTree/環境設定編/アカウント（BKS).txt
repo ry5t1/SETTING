@@ -1,0 +1,8 @@
+	//　APPテスト(US)
+	momotaro
+
+	//  APP本番(US)
+	sakurasaku
+
+	//  GLテスト(US)
+	orandamura

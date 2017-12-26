@@ -1,0 +1,30 @@
+/*設定*/
+SET @birthday_id = 47;
+SET @user_profile_id = 504;
+/*※user_itemの接尾語も修正する*/
+
+/*ユーザアイテム*/
+select c.* from birthday_event_mst a 
+left join combined_sale_item b ON a.combined_sale_mst_id = b.combined_sale_mst_id
+left join user_item4 c ON b.item_mst_id = c.item_mst_id
+where a.id = @birthday_id and c.user_profile_id = @user_profile_id;
+
+/*ストーリー購入ログ*/
+select b.* from birthday_event_mst a 
+left join user_buy_story b ON a.story_mst_id = b.story_mst_id
+where a.id = @birthday_id and b.user_profile_id = @user_profile_id;
+
+/*プレゼント履歴*/
+select e.* from birthday_event_mst a 
+left join combined_sale_item b ON a.combined_sale_mst_id = b.combined_sale_mst_id
+left join item_set d ON b.item_mst_id = d.item_mst_id
+left join present4 e ON d.set_item_mst_id = e.item_mst_id
+where a.id = @birthday_id and e.user_profile_id = @user_profile_id;
+
+/*購入履歴*/
+select e.* from birthday_event_mst a 
+left join combined_sale_item b ON a.combined_sale_mst_id = b.combined_sale_mst_id
+left join item_set d ON b.item_mst_id = d.item_mst_id
+left join shop_item_list f ON d.item_mst_id = f.item_mst_id
+left join payment_log e ON e.shop_item_list_id = f.id
+where a.id = @birthday_id and e.user_profile_id = @user_profile_id;

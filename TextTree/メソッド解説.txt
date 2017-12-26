@@ -1,0 +1,24 @@
+	// getImageTag
+	第一引数：　プロジェクトからファイルまでのルート
+	例）
+	プロジェクトがUS　・　引数が top 
+	http://t.usapp.bks.aws.cybird.ne.jp/assets/img/us/top/
+	第二引数：　ファイル名の拡張子なし
+	例）　
+	引数＝ mypage_button　
+	http://t.usapp.bks.aws.cybird.ne.jp/assets/img/us/top/mypage_button.gif
+	
+
+	// getLinkTag
+	引数１：　URL
+	Uri::base(false).Config::get('system_name').ここから任意
+	※　config は、cybird.php　、　system_name は contents
+	引数２：　リンクに渡す値を入れれる	
+
+// テストで使用
+<td rowspan="2">
+<form action="<?php echo Uri::base(false) . 'admin/scenarioevent/test' ?>" method="post">
+<input type="hidden" name="scenario_event_mst_id" value="<?php echo $scenario_event['id']?>" />
+<input type="submit" value="test" style="width: 50px;"/>
+</form>
+</td>

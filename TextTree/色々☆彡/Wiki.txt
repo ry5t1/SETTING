@@ -1,0 +1,2 @@
+// 画像を添付
+&attachref(,nolink);

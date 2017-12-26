@@ -1,0 +1,5 @@
+// ブランチの説明を設定します
+git branch --edit-description [BRANCHNAME]
+
+//　確認方法
+git config branch.foo.description

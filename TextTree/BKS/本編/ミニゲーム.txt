@@ -1,0 +1,12 @@
+	■画像サーバへ画像を投入
+		・画像サーバのminigame/event/フォルダー作成
+	
+
+	■Viewファイルに切り替え画像を仕込む
+		・minigame/resulet_excellent.php
+		・minigame/resulet_good.php
+
+
+	■Contentファイルに追加
+		・add_chara　に追加
+	

@@ -1,0 +1,13 @@
+	☆　バグの原因・対応の履歴です　☆
+
+	【　違うプロローグが再生される　】
+	◆原因
+	　設定漏れ（プログラム）
+	◆対応
+	　コントローラ
+	　top.phpの
+	　/** 序章のチケットID */
+	　const PROLOGU_FLASH_TICKET_ID = 6165;  を、
+	　const PROLOGU_FLASH_TICKET_ID = 6254;  に変更
+
+	

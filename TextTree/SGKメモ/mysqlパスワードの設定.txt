@@ -1,0 +1,12 @@
+// mysqlへ接続
+mysql -u root
+
+// mysqlの設定を表示
+select user , host, password from mysql.user; 
+
+// 権限の付与
+（ERROR 1130 (HY000): Host '192.168.xx.xx' is not allowed to connect to this MySQL server）
+grant all privileges on *.* to lsne_default@"192.168.33.10";
+
+// パスワードの設定
+SET PASSWORD FOR lsne_default@"192.168.33.10"=PASSWORD('lsne_default');

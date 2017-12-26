@@ -1,0 +1,17 @@
+// 実行するSQLのデータを確認する
+Explain
+
+
+// テーブルの定義を確認する
+describe
+
+
+// NOT NULL 制約の付加
+ALTER TABLE table_name MODIFY field_name type NOT NULL
+例)
+ALTER TABLE item_category_relation_mst MODIFY value_id int(11) NOT NULL;
+
+// NOT NULL 制約の解除
+ALTER TABLE table_name MODIFY field_name type  NULL
+例）
+ALTER TABLE item_category_relation_mst MODIFY value_id int(11) NULL;

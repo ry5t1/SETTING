@@ -1,0 +1,26 @@
+----チュートリアルミッションのログ----------------------------------
+※　削除前に名前を確認！！！！　※
+select * from user_profile where id =
+
+☆ミッション系の削除といわれたら☆
+// 全て削除
+select * from newcomer_mission_clear_log7 where user_profile_id = 497
+
+// 全て削除
+select * from newcomer_mng where user_profile_id = 497
+
+// 該当のIDを削除
+select * from user_minigame where user_profile_id = 143051
+
+☆ミッション○○の削除といわれたら☆
+// 指定のミッションと10と11
+select * from newcomer_mission_clear_log7 where user_profile_id = 497
+
+// clear_flag=0へする
+select * from newcomer_mng where user_profile_id = 497
+
+☆すべて削除してといわれたら☆
+// ミッション系の削除　+  ユーザプロファイル削除
+select * from user_profile where id = 
+
+-------------------------------------------------------------

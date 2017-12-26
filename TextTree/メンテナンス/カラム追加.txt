@@ -1,0 +1,1 @@
+ALTER TABLE item_mst ADD voice_story_mst_id int(11) DEFAULT NULL AFTER still_mst_id;

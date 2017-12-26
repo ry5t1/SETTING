@@ -1,0 +1,29 @@
+	<!-- メイクアバター -->
+	<div class="title_area" style="margin-top:10px">
+		<div style="padding:2px">
+			<hr size=1 width="95%" color="#ffffff;" style="border-top-color:#ffffff;">
+		</div>
+		<div  class="shadow">
+			<span style="color:#ffffff;font-weight: bold;">限定！メイクアバターGETのチャンス♥</span>
+		</div>
+		<div style="padding:2px">
+			<hr size=1 width="95%" color="#ffffff;" style="border-top-color:#ffffff;">
+		</div>
+	</div>
+	<div style="margin-top:5px;">
+		<?php echo $util->getImageTag('event/scenarioevent/'.$view_data['scenario_event_mst']['id'], 'mission_clear',array('width'=>'100%')) ?>
+		<div style="margin-top:5px;text-align:left;">
+			本イベントの<span style="color:<?php echo $base_color['txtcolor3']?>;">全ENDクリア</span>+同時配信中の
+			<span style="color:<?php echo $base_color['txtcolor3']?>;">「沖田誕生日ストーリー」「桂誕生日ストーリー」どちらかで極上の贈り物をする</span>と、限定アバター「
+			<span style="color:<?php echo $base_color['txtcolor3']?>;">唇：夢桃</span>」がGETできるよ！
+			イベントもストーリー販売も楽しんじゃおう♪<br>
+			※7/25　16：00段階で条件を達成している方のみ対象となります。
+		</div>
+		<div style="padding: 5px">
+			<?php echo $util->getLinkTag(Uri::base(FALSE).Config::get('system_name').'/event/birthday/event_view/25', $util->getImageTag('/campaign/', '0948_1'),array('class' => 'play_sound_button_plus', 'style' => 'width:95%'));?>
+		</div>
+		<div style="padding:5px;">
+			<?php echo $util->getLinkTag(Uri::base(FALSE).Config::get('system_name').'/event/birthday/event_view/26', $util->getImageTag('/campaign/', '0949_1'),array('class' => 'play_sound_button_plus', 'style' => 'width:95%'));?>
+			┗<span class="blinking" style="color:#ff2c78;font-weight: bold;">限定スチル付♥誕生日ストーリー</span>┛<br />
+		</div>
+	</div>

@@ -1,0 +1,30 @@
+	// 新規ブランチを作成後、ブランチ移動
+	mk_branch_by_master.sh araki/{作業名}	※　例）araki/loginbonus_20
+
+	// 変更をIndexへ記録
+	git add .
+
+	// 変更をコミット
+	git commit -a -m "コメント"
+
+	// テストサーバの同名ブランチにプッシュ
+	git push 
+
+	
+
+
+	～ブランチテストにマージ、そのあとテストサーバへプッシュ～
+	
+	// ブランチの移動
+	git checkout test
+
+	// マージする
+	git merge --no-ff {ブランチ名}
+
+	// プッシュ
+	git push origin test	
+
+
+	【　需要　】
+	必ず作業が終わったら、作業ブランチに戻す。
+	⇒　test/master等で、編集しないこと。

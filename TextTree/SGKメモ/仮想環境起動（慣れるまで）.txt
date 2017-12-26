@@ -1,0 +1,17 @@
+// WEB
+◇起動（各PFによる実行）
+env GENV=development PLATFORM=app grunt
+
+
+// API
+◇vagrant 起動
+vagrant up
+
+◇vagrat に接続
+vagrant ssh
+
+◇起動
+sudo service httpd start
+
+◇（補足）
+service httpd restart で再起動

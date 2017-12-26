@@ -1,0 +1,38 @@
+	<?php if($up->timestamp() < strtotime('2016-07-21 00:00:00')):?>
+		<!-- スタートダッシュ -->
+		<div class="title_area" style="margin-top:10px">
+			<div style="padding:2px">
+				<hr size=1 width="95%" color="#ffffff;" style="border-top-color:#ffffff;">
+			</div>
+			<div  class="shadow">
+				<span class="blining" style="color:#ffffff;font-weight: bold;">
+					スタートダッシュでミニキャラGET♥
+				</span>
+			</div>
+			<div style="padding:2px">
+				<hr size=1 width="95%" color="#ffffff;" style="border-top-color:#ffffff;">
+			</div>
+		</div>
+		<table>
+			<tr>
+				<td style="text-align: right;">
+					<?php echo $util->getImageTag('item', 12653, array('style'  => 'margin-right: 8%;')); ?>
+				</td>
+				<td style="text-align: left;">
+					<?php echo $util->getImageTag('item', 12652, array('style' => 'margin-left: 8%;')); ?>
+				</td>
+			</tr>
+		</table>
+		<div style="padding:5px; text-align:left;">
+			<span style="color:<?php echo $base_color['txtcolor3']?>;">沖田・桂のほっぺちゅーミニキャラ</span>付き<span style="color:<?php echo $base_color['txtcolor3']?>; font-weight:bold;">♥</span>超豪華スタートダッシュセット販売中!!購入して、<span style="color:<?php echo $base_color['txtcolor3']?>;">両肩に沖田と桂をのせちゃおう♡</span><br />
+			※スタートダッシュセットは<span style="color:<?php echo $base_color['txtcolor3']?>;">7/20　24：00まで</span>の<span style="color:<?php echo $base_color['txtcolor3']?>;">限定販売</span>となります。
+		</div>
+		<div style="padding:5px;">
+			<?php if ($up->timestamp() < strtotime('2016-07-20 24:00:00')):?>
+				<?php echo $util->getLinkTag(Uri::base(FALSE).Config::get('system_name').'/event/scenarioevent/eventsetsale', $util->getImageTag('event/scenarioevent/'.$view_data['scenario_event_mst']['id'], 'banner_set'),array('class' => 'play_sound_button_plus', 'style' => 'width:95%'));?>
+				┗<span class="blinking" style="color:#ff2c78;font-weight: bold;">【ミニキャラ付♥】6/18　24：00まで</span>┛<br />
+			<?php else: ?>
+				<?php echo $util->getLinkTag(Uri::base(FALSE).Config::get('system_name').'/event/scenarioevent/eventsetsale', $util->getImageTag('event/scenarioevent/'.$view_data['scenario_event_mst']['id'], 'banner_set2'),array('class' => 'play_sound_button_plus', 'style' => 'width:95%'));?>
+				┗<span class="blinking" style="color:#ff2c78;font-weight: bold;">ランキング応援♥お得なセット</span>┛<br />
+			<?php endif; ?>
+		</div>

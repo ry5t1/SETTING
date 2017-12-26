@@ -1,0 +1,103 @@
+// uuidエンコードやり方
+uuidencryption.php　を　SGK_API/fuel/app/tasks　にペースト
+vagrant 接続
+SGK_API　にディレクトを移動
+SGK_API]$ env FUEL_ENV=development PLATFORM=app php oil refine uuidencryption:enc （自分のUUID） （適当な文字列：abcdABCD12345678）
+
+◇ローカルとテストで違う
+Application > Local　Strage
+①行目
+key: uuid
+value:テスト環境の場合は、エンコードされたuuid
+②行目
+key: iv
+value: エンコードのために使用した文字列
+
+
+
+// ローカル環境のuuidの設定
+Config/user.yml 
+に任意のuuidを設定する。
+
+
+// grunt 立ち上げの簡略
+https://github.com/CYBIRD/SRD_WEB/blob/master/package.json
+SGK_WEB > pagkage.json
+へ入れてあげるとコマンドを打たなくてよくなる。
+＞＞　npm start
+
+
+// ストーリーの再生を早くする
+config > storysetting.yml >autoReadSpeed 
+
+
+//　APIの向き先を変更する
+SGK_WEB/config/development.app/api.yml
+
+
+// サンバサーバ接続
+ssh -i ~/.ssh/id_rsa_orc_sgk sgk@10.133.30.2
+
+
+// エクリプス変更していないのに「＞」が出るときの解決方法
+git config core.filemode false
+
+
+// 画像の種類
+img: リソースとDBに関連している
+※　DBに登録⇒リソース⇒リソース更新すると反映される
+site-img:　直接のやつ（BKSのと同じ）
+
+
+//　ローカルの管理画面でパスワードを求められる
+public/admin/.htaccsess
+を適当なフォルダを作成してその中にいれる
+
+
+// mongo接続エラー
+ ps aux　| grep サービス名（mongo)
+ps：　プロセスサービスの略
+aux: 確認コマンド
+
+
+// リスタート
+sudo service mongod restart
+※mondodのｄはデーモンの意味。大体はdがついている。
+
+
+// ネットワーク設定を確認する
+view /etc/sysconfig/network-scripts/ifcfg-eth0
+
+
+// 設定情報の確認
+ipconfig
+
+
+// 管理画面でPassが求められる
+public/.htaccessのディレクトリ階層を変える
+
+
+// dbの向き先を変更
+app/config/development/db.php
+のdatabase名を変更する
+
+
+// スペースコード変更
+ウィンドウ＞＞設定＞＞PHP＞＞エディタ＞＞
+
+// スペースコード強調
+ウィンドウ＞＞設定＞＞一般＞＞テキストエディタ
+・現在の行の強調表示
+
+
+// タブとスペースの変更
+◇設定　＞　一般　＞　エディター　＞　テキスト・エディタ
+=> タブでスペースを挿入
+◇設定　＞　PHP　＞　コード・スタイル　＞　フォーマッター
+=> 編集 一般設定を変更
+
+
+
+// ローカルでのJshint実行方法
+grunt jshint
+=> 生成されたファイルをチェックする

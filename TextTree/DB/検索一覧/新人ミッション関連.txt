@@ -1,0 +1,19 @@
+/* 該当新人ミッション　*/
+select * from newcomer_measure_mst
+
+/* ミッションログとミッションをジョインして表示*/
+select * from newcomer_mission_clear_log0 a
+left join newcomer_mission b ON a.newcomer_mission_id = b.id
+where a.user_profile_id = 690
+
+/* ★このテーブルの「newcomer_measure_start」＋ミッション時間（2週間）と現在のタイムスタンプを比較する★ */
+select * from newcomer_mng where user_profile_id = 690
+
+/* クリアログ */
+select * from newcomer_mission_clear_log0 where user_profile_id = 690
+
+/* リスト取得 */
+select * from newcomer_mission where newcomer_measure_mst_id = 3
+
+/* クリアボーナス取得 */
+select * from newcomer_mission_clear_bonus where newcomer_measure_mst_id = 3

@@ -1,0 +1,25 @@
+<h2>Git エラー | unable to write new index file </h2>
+<div text_base">
+特になにをしたわけでもなく、チェックアウトしようとしたら、いきなりエラーがでた。
+<img src="http://a1r1k2.wp.xdomain.jp/wp-content/uploads/2016/07/git-error.png" alt="git-error">
+対処法を備忘のためのこす
+</div>
+
+<hr class="border" />
+
+<h3>原因</h3>
+<div class="text_base">
+調べてみたら、容量がいっぱいなのが原因らしい。
+
+そこで、
+容量を確認してみる。
+
+<img src="http://a1r1k2.wp.xdomain.jp/wp-content/uploads/2016/07/git-error2.png" alt="git-error">
+
+ん？
+いっぱいじゃないじゃん・・・
+本当は、ここで使用が100％くらいになっているはずだったが・・・
+違うのか？
+</div>
+
+&nbsp;

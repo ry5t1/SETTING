@@ -1,0 +1,35 @@
+デバック時に登録したユーザを対象に全PF実施。
+
+①scenario_event_collection_collect_item
+
+②scenario_event_collection_count_detail
+
+③scenario_event_collection_ranking_odd or even
+
+④event_user_profile_id
+
+
+
+
+select * from event_user_profile 
+	where scenario_event_mst_id = 51;
+
+select * from scenario_event_collection_ranking_odd 
+	where scenario_event_mst_id = 51;
+
+select * from scenario_event_collection_count_detail 
+	where scenario_event_mst_id = 51;
+
+select * from scenario_event_collection_collect_item 
+	where scenario_event_mst_id = 51;
+
+
+
+★通常イベント★
+SET @event_id = 72;
+select * from event_user_profile 
+	where scenario_event_mst_id = @event_id;
+
+select * from event_parameter_ranking_even 
+	where scenario_event_mst_id = @event_id;
+

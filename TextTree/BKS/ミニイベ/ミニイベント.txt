@@ -1,0 +1,17 @@
+**************************************
+* 恋する気持ち200個特典設定
+**************************************
+[ 登録 ]
+INSERT INTO scenario_event_collection_bonus VALUES ('10', '45', '200', null, '1', null, null, '9', '0', '恋する気持ち200個特典', '0', '0');
+[ 確認 ]
+select * from scenario_event_collection_bonus;
+
+
+************************************
+* あいことばイベント
+************************************
+[ 登録 ]
+INSERT INTO love_heaven_quiz_data VALUES ('6', 'あいことばキャンペーン', 'しょうぐん', null, null ,'2773', '10', '「慶喜生誕記念」あいことばキャンペーン特典恋する気持ち10個', '0', '0');
+
+[ 確認 ]
+select * from love_heaven_quiz_data;

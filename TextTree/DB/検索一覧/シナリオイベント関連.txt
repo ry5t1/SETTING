@@ -1,0 +1,13 @@
+*********************************
+*  エピローグコンプしたかどうかのログを確認
+*********************************
+イベントID44：
+全コンプしたら購入完了画面で表示切り替えがあった時の対応。
+＞＞epilog_comp_bonus
+[ エピローグの購入ログ確認 ]
+select * from user_buy_story where user_profile_id = 451 ;
+
+[ ボーナスの購入ログ確認 ]
+select * from event_bonus_mng 
+where scenario_event_mst_id = 44 
+and event_user_profile_id =2363

@@ -1,0 +1,50 @@
+【　SBS　】
+id
+story_mst_id
+chara_mst_id
+chapter_title
+
+ストーリー＞チャプター＞チケット＞シーン
+
+//　チャプターIDから連なるチケットIDを取得
+//  foreachでチケットID毎に更新を行う
+chapter_mst_id
+select id from ticket_mst where chapter_mst_id = postで得たid
+
+
+
+【　BKS　】
+id
+story_mst_id
+chra_mst_id
+
+
+--------上記は勘違い（途中でやめた。。。）------------------------
+
+//  ストーリー複数一括登録（複数キャラが登場するシナイベ登録がらくになる）
+【　SBS　】
+①　chara_ｍｓｔ　を　Viewへ渡す
+②　ViewからControllerへ値を渡す（以下のパラメーター）
+	・　chara_mst_id (Checkbox)
+	・　story_cd
+	・　story_title
+	・　story_start
+	・　story_end
+	・　is_epilog（Checkbox)　⇒　エピローグかどうか
+	・　target_chapter_count　⇒　チャプター数はいくつか　⇒　※　指定数生成する
+	・　target_branch_chapter　⇒　分岐する話数
+	・　target_ticket_count  ⇒　生成するチケット数
+
+補足）
+//  ストーリー追加の登録項目
+	・　chara_id
+	・　story_cd
+	・　story_title
+	・　story_start
+	・　story_end
+	・　after_premire_notice（Aルートあらすじ）
+	・　after_sweet_notice（B,Cルートあらすじ）
+	・　memo
+
+③　charaの数だけ個別にストーリの登録をしていく
+※　あらすじ　⇒　""

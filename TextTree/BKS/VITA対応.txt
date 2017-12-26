@@ -1,0 +1,17 @@
+*************************
+* 友達の上限確認用のSQL
+*************************
+select * from event_user_profile
+	where user_profile_id = 1004605
+⇒友達上限値を確認（max_friends）
+
+select * from event_user_friend4
+	where event_user_profile_id = 1004604;
+
+friend_status
+1:誘われ中
+2:誘い中
+3:友だち
+4:若葉仲間誘われ中
+5:若葉仲間申請中
+6:若葉仲間友だち

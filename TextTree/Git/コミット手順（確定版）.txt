@@ -1,0 +1,37 @@
+	//　最初に必ず確認
+	git status
+
+	//  ファイルを追加したら
+	git add .
+
+	//　変更をコミット
+	git commit -a -m "コメント"
+
+	//  自分が変更したところのみがどうかの確認
+
+
+
+	//　リモートの作業ブランチへプッシュ
+	git push origin ブランチ名
+
+
+	//  一度プルする
+	git pull
+	
+
+	//  作業ブランチをtestに切り替える
+	git checkout test
+
+	//  リモートのtestをプル
+	git pull
+
+	//  testへ作業ブランチをマージ
+	git merge --no-ff
+
+	//  ここでも必ず確認を入れる
+
+
+	//  リモートのtestへプッシュ
+	git push origin test
+
+	//  Jenkinsのビルドを回す

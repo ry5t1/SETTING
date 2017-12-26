@@ -1,0 +1,14 @@
+	// スタッシュの作成
+	git stash save
+
+	// スタッシュの確認
+	git stash list -p
+
+	// スタッシュの復元（直前）
+	git stash pop
+
+	// スタッシュの復元（複数の場合）
+	git stash pop stash@{0}
+
+	// スタッシュの削除
+	git stash drop <消したいstash名>

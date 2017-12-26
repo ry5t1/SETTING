@@ -1,0 +1,6 @@
+	☆APP：momotaro
+	user_profile_id = 690	
+
+	//  本編促進：Chickをかえる
+	SELECT * FROM collection_user_profile WHERE user_profile_id = ｛ユーザID};
+	※　total_collection_count を変更する

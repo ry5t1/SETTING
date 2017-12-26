@@ -1,0 +1,6 @@
+/*アバターカテゴリーID重複時の検索SQL*/
+SELECT * FROM avatar_mst a
+LEFT JOIN avatar_category_mst b ON a.avatar_category_mst_id = b.id
+/*ここに指定のカテゴリIDを入れる*/
+WHERE b.avatar_category_cd = '452'
+order by a.avatar_mst_cd asc;

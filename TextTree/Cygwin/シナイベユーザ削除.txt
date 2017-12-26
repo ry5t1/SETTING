@@ -1,0 +1,19 @@
+// GREE
+env HTTP_HOST=gree /usr/bin/php /home/bks_gree/app/current/oil refine eventranking:del_debug_data_event ｛シナイベID｝
+
+
+// AMB
+/usr/bin/php /home/bks_amb/app/current/oil refine eventranking:del_debug_data_event ｛シナイベID｝
+
+
+// GL
+/usr/bin/php /home/bks_gl/app/current/oil refine eventranking:del_debug_data_event ｛シナイベID｝
+
+
+// APP
+/usr/bin/php /home/bks_app/app/current/oil refine eventranking:del_debug_data_event ｛シナイベID｝
+
+
+// DC
+env HTTP_HOST=dc /usr/bin/php /home/bks_dc/app/current/oil refine eventranking:del_debug_data_event ｛シナイベID｝
+

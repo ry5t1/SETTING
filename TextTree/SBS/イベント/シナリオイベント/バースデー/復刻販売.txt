@@ -1,0 +1,9 @@
+	View >>
+	scenarioevent_eopilog_top.php >>
+
+	531行目のエピローグ復刻販売バナー表示の部分を可用。
+
+	画像：
+	box_title_cpn.png
+	ev_banner_ep_revival.png
+	box_bottm.png

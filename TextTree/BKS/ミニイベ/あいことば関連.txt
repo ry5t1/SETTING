@@ -1,0 +1,19 @@
+******************
+* インサート文（SQL）　*
+******************
+INSERT INTO love_heaven_quiz_data (
+	question,
+	answer,
+	item_mst_id,
+	item_count,
+	description
+)
+VALUES (
+	'あいことばキャンペーン',
+	'せんにゅう',
+	'2685',
+	'10',
+	'「高杉・大久保生誕記念」◆あいことばキャンペーン特典恋する気持ち10個'
+);
+select * from love_heaven_quiz_data;
+select * from love_heaven_user_data;

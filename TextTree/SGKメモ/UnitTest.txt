@@ -1,0 +1,30 @@
+
+1.vagrantを起動
+　※リポジトリへ移動
+　vagrant up
+　こけるかも
+　　→DocumentRoot周りだから一旦シカト
+　
+2.vagrantへ接続
+　vagrant ssh
+
+3.初回 composerをインストールする
+　curl -sS https://getcomposer.org/installer | php
+　※LoveSocialNativeEngineディレクトリ内で実行する
+
+4.composerを利用して依存物を取得する
+　php composer.phar install
+
+5.テストクラス作成する
+　例）/LS_COSMOS_GMT_SPEC_CONVERTER/tests/ExampleTest.php
+　※@groupアノテーションをいれておく
+　　　groupの規約を確認する！！
+　
+6.テストクラス実行
+　 ~/LoveSocialNativeEngine/vendor/bin/phpunit --group={@groupアノテーションで指定したグループ名}
+
+
+
+
+『Update』
+php composer.phar update cybird_ls/cosmos_gmt_spec_converter

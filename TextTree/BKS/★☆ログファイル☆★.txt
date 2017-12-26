@@ -1,0 +1,15 @@
+＊＊＊＊＊＊＊＊＊
+＊　　テスト環境　　＊
+＊＊＊＊＊＊＊＊＊
+tailf logs/2016/10/12.php
+tailf logs/2016/10/2016-10-12_log
+
+
+
+
+
+＊＊＊＊＊＊＊＊＊
+＊ 　　本番環境　　＊
+＊＊＊＊＊＊＊＊＊
+tailf app/current/logs/2016/10/10.php
+tailf app/current/logs/2016/10/2016-10-12_log

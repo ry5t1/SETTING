@@ -1,0 +1,28 @@
+	//  boxのインストール
+	vagrant box add {Name} {URL}
+	※　URLはネット上にアップされている
+
+	//  Boxの確認
+	vagrant box list
+
+	//  vagrantfileの生成
+	vagrant init {BoxName}
+
+	//  Vagrantfileを設定する
+	・　ネットワークの設定
+	・　ローカルと仮想のファイルの同期
+	※　初期値はコメントアウトしてあるので必要なところのコメントアウトを消す
+
+	//  仮想マシンの起動
+	vagrant up
+	※　ping {IPアドレス（Vagrantfileで設定したもの）｝
+	⇒　接続の確認を行う
+
+	// TeraTerm（接続できるツール）を設定
+	ホスト：　Vagrantfileで設定したIPアドレス
+	TCPポート：　そのまま
+	UserName：　root
+	pass：　vagrant
+
+	//  TeraTermを起動したら階層に注意
+	cd / からはじめる

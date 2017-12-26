@@ -1,0 +1,28 @@
+// AMB_TEST : user_profile_id = 451 を例としている
+
+-------	//  セット販売の購入履歴の消し方---------------------------------------
+	-- Step1：　アイテムの所持を削除 ------
+	// ユーザが購入したアイテムを検索
+		select a.id,a.item_mst_id,a.item_count, b.item_name from user_item1 a 
+		right join item_mst b on a.item_mst_id = b.id
+		where user_profile_id = 451
+
+	// 検索したIDでレコードを抽出
+		select * from user_item1 where id = 
+
+	-- Step2：　購入ログを削除 ------
+	// 購入したアイテムのストーリーログを検索
+		select a.id, a.story_title, b.id from story_mst a 
+		left join user_buy_story b 
+		ON a.id =  b.story_mst_id
+		where b.user_profile_id = 451
+
+	// 検索したIDでレコードを抽出
+		select * from user_buy_story 
+		where user_profile_id = 451
+		AND id = 　
+
+	-- Step3：　手紙が付与されたかの確認	------
+	//  レターマストのStart時間で付与されるよ
+		select * from user_letter1 where user_profile_id = 451
+----------------------------------------------------------------------------

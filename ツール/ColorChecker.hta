@@ -1,0 +1,26 @@
+<head>
+	<hta:application
+		navigable="yes"
+		maximizeButton="no"
+		minimizeButton="no"
+		scroll="no"
+		applicationName="ColorChecker"
+		>
+ 	<script type="text/javascript"><!--
+		var width = 255;
+		var height = 130;
+		window.resizeTo(width,height);
+		
+		function change_color(a){
+		document.getElementById("colors").style.backgroundColor = a;
+		}
+		
+
+ 	--></script>
+<head>
+<body id="colors" style="background:ffffff">
+	<form id="color" action="color.hta" method="get">
+	<p><input type="text" id="color_text" name="color" size="40" maxlength="20" onchange="change_color(this.value)"></p>
+	</form>
+</body>
+

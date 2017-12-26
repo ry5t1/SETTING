@@ -1,0 +1,19 @@
+<?php // シナリオイベントID44専用?>
+<?php
+	$route_title = $eutil->getCharaRouteTitleData($eup->scenario_event_mst_id, $eup->chara_mst_id).'<br/>';
+	$route_chara = ((!empty($eup->select_course)||$eup->select_course != 0)?$eutil->getCharaRouteData($eup->scenario_event_mst_id, $eup->chara_mst_id, $eup->select_course):'');
+	if (empty($route_chara)) {
+		$route_title = $route_title.$route_chara;
+	}
+?>
+
+
+// お仲間情報
+<?php // シナリオイベントID44専用?>
+<?php
+	$route_title = $eutil->getCharaRouteTitleData($view_data['user_data']->scenario_event_mst_id, $view_data['user_data']->chara_mst_id).'<br/>';
+	$route_chara = ((!empty($view_data['user_data']->select_course)||$view_data['user_data']->select_course != 0)?$eutil->getCharaRouteData($view_data['user_data']->scenario_event_mst_id, $view_data['user_data']->chara_mst_id, $view_data['user_data']->select_course):'');
+	if (empty($route_chara)) {
+		$route_title = $route_title.$route_chara;
+	}
+?>

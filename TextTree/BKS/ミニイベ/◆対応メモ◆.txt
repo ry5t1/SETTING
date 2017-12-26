@@ -1,0 +1,44 @@
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+＝　幕末スタンプ文言追加もれ  ＝
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+幕末スタンプの文言は、共通のスタンプViewに、時間を指定して入れる！
+
+
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+＝ 説明フラッシュ・イベント説明フラッシュ ＝
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+説明フラッシュのチケットIDを二か所入れないといけない。
+collection.php（コントローラ）
+◆　tutorial_flash_tichet_id = イベント説明Flash
+◆　collection_tutorial_flash_ticket_id = 応援特別企画説明　
+
+
+
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+＝　応援セットサムネ表示順の設定　＝
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+イベントマイページ等で、優先順位の指定がある。
+⇒イベント応援セットの登録順で優先順位（表示順）が決まる。
+※　イベント応援セットで設定する優先順位は、応援セット販売画面の順位のみ適用される。
+[ 確認用 ]
+SELECT a.id, a.event_set_sale_mst_id, b.item_name,a.item_head_text
+FROM event_set_sale_item a 
+LEFT JOIN item_mst b ON a.item_mst_id = b.id 
+WHERE event_set_sale_mst_id = 45
+ORDER BY a.id;
+ (event_set_sale_mst_id に、シナリオイベントIDをいれる）
+⇒　id の順番で該当の表示順がきまる。
+[ 対応 ]
+select * from event_set_sale_item where event_set_sale_mst_id = 45
+id を入れ替える。
+注意！idはプライマリキーの為、重複不可。
+⇒よって、変更したいidを一旦大きな値等で退避させてうめていく！
+※　フィーバーセットは順番気にしなくてもOK。その他のセットアイテムのみ上記実施。
+
+
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+＝　エントリーフィーバーがサイト全体フィーバーに重なった際の文言が表示されない　＝
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+scenarioevent_mypage_select_view.php
+line: 627
+設定時間を最後のサイト全体フィーバー開始時間に設定する。

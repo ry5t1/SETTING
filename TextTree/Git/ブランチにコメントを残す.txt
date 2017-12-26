@@ -1,0 +1,6 @@
+	//  ブランチへコメントを書く
+	git branch --edit-description [ブランチ名]
+
+
+	//  確認する
+	git config branch.[ブランチ名].description

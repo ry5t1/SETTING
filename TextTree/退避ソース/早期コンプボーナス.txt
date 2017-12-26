@@ -1,0 +1,115 @@
+// 早期コンプボーナスの時間訴求のやつが
+	View_type = 1　：　シナイベ開始してからのリミット
+	View_type = 2  ：　イベント開始してからのリミット
+による出しわけを最初、理解せずに無理やり出しわけを行った際のソース
+
+関連ファイル：event/scenarioevent/44/mypage/scenarioevent_mypage_select_view/php line: 216
+
+
+	<?php /* if($up->timestamp() >= strtotime('2016-2-3 00:00:00') && $up->timestamp() < strtotime('2016-2-7 00:00:00')): ?>
+		<?php if ($view_data['clear_sweet_count'] + $view_data['clear_premire_count'] < 8):?>
+			<div class="border_default_window" style="margin:3px 0 0 3px;">
+				<span class="blinking txtcolor3" style="font-weight: bold;font-size:16px;">＼こちらの特典もチェック／</span>
+				<?php echo $util->getLinkTag(
+					Uri::base(FALSE).Config::get('system_name').'/event/scenarioevent/help/item?tab=2#8end',
+					$util->getImageTag(
+						'event/scenarioevent/'.$eup->scenario_event_mst_id,
+						'end_8_present',array('style' => "width:100%")
+					)
+				)?>
+				<span style="color: <?php echo $base_color['txtcolor3']?>">8種類</span>のENDを迎えた方にプレゼント！
+			</div>
+		<?php endif;?>
+	<?php endif */ ?>
+
+	<?php
+		$comp_flg = true;
+		$cnt = 0;
+		foreach ($view_data['now_early_comp_list'] as $earlyitem):
+			if($earlyitem->view_type == 9){
+				continue;
+			}
+			if (isset($view_data['comp_status']['early_comp_bonus'][$earlyitem->item_mst_id])):
+				$cnt++;
+			else:
+				$remain_time = max(0, min($view_data['scenario_event_mst']->end, $view_data['first_select_time'] + $earlyitem->limit) - $up->timestamp());
+				if ($remain_time <= 0) {
+					$cnt++;
+				}
+			endif;
+		endforeach;
+		if($cnt == 3){
+			$comp_flg = false;
+		}
+	?>
+	<?php if($comp_flg):?>
+	<!-- 早期コンプ情報 -->
+	<div ><?php echo $util->getImageTag('event/scenarioevent/'.$view_data['scenario_event_mst']->id, 'early_bonus_title') ?></div>
+	<div class="mypage_bonus_list ">
+	<table><tr>
+		<?php foreach ($view_data['now_early_comp_list'] as $earlyitem): ?>
+			<?php
+			if($earlyitem->type != 1 && $earlyitem->type != 2){
+				continue;
+			}
+			$view_flg = 9;
+			if( $up->timestamp() > strtotime('2016/07/02 24:00:00') ){
+				$view_flg = 4;
+			}
+			if( ($earlyitem->view_type == 9 || $earlyitem->view_type == 4) && $earlyitem->view_type != $view_flg ){
+				continue;
+			}
+			// $periodには、特典のそもそもの限界時間を設定する ( イベント終了)
+			$early_comp_limit = '';
+			$period = $view_data['scenario_event_mst']->end;
+			$remain_time = max(0, min($period, $view_data['first_select_time'] + $earlyitem->limit) - $up->timestamp());
+			if ($remain_time > 0) {
+				//$m = ceil($remain_time/60);
+				$hour = floor($remain_time / 3600);
+				$minute = floor($remain_time / 60) % 60;
+
+				$early_comp_limit = sprintf("%02d時間%02d分", $hour, $minute);
+			}
+			?>
+			<td>
+				<div>
+					<?php if (isset($early_comp_limit) && ($early_comp_limit != '') && !isset($view_data['comp_status']['early_comp_bonus'][$earlyitem->item_mst_id]) ): ?>
+						<span class="remain_time">残り<span style=" color:<?php echo $base_color['txtcolor3'] ?>"><?php echo $view_data['early_bonus_list'][$i][0]['early_comp_limit']?></span></span>
+					<?php elseif (isset($view_data['comp_status']['early_comp_bonus'][$earlyitem->item_mst_id]) ): ?>
+						<span class="remain_time" style=" color:<?php echo $base_color['txtcolor3'] ?>">取得しました</span>
+					<?php else: ?>
+						<span class="remain_time" style=" color:<?php echo $base_color['txtcolor3'] ?>">終了しました</span>
+					<?php endif; ?>
+					<div class="item_tmb_area">
+						<div class="item_tmb">
+							<?php echo $util->getLinkTag(Uri::base(FALSE).Config::get('system_name').'/event/scenarioevent/help/item?tab=2#souki', $util->getImageTag('item', $earlyitem->item_mst_id)) ?>
+						</div>
+						<div class="item_tmb_param">
+							<div class="title">
+								魅力
+							</div>
+							<div class="param">
+								<?php echo $util->getItemMstById($earlyitem->item_mst_id)->change_value ?>
+							</div>
+						</div>
+					</div>
+					<?php if($earlyitem->type == 2): ?>
+						<div class="bonus_condition">
+						<?php
+							$conditions_str = "";
+							if($earlyitem->clear_chara_count != 4){
+								$conditions_str = $earlyitem->clear_chara_count.'人と<br />単独キャラEND';
+							}else if($earlyitem->view_type == 9){
+								$conditions_str = '全ての単独キャラ<br />ENDを迎える';
+							}else{
+								$conditions_str = '全てのENDを<br />迎える';
+							}
+
+						?>
+							<?php echo $conditions_str ?>
+						</div>
+					<?php endif; ?>
+				</div>
+			</td>
+		<?php endforeach; ?>
+		<!-- 早期全プレミアコンプ情報 id:9-->

@@ -1,0 +1,52 @@
+	☆　本編の追加手順　☆
+
+	【　管理画面　】
+	◆アイテム登録
+		・恋の砂
+		・ストーリー
+		・アバター
+
+	◆ショップアイテム管理登録
+
+	◆ストーリー管理
+	　＞＞該当キャラ
+		・ストーリーコード
+
+	◆手紙管理
+
+	◆思い出スチル管理
+
+	◆ガチャ管理
+	
+	◆TOP画像管理
+
+	【　DB　】
+	◆フラッシュの登録（関連テーブル：variable_url_flash_mst)
+	SQL
+	INSERT INTO 'variable_url_flash_mst' VALUES(id, chapter_mst_id, description, 0, 0, '/chara/select/{chara_mst_id}, 0, 0, 0);
+	id　⇒　連番の最後になるid
+	chapter_mst_id　⇒　（管理画面）ストーリ＞本編＞チャプター編集＞本編紹介　のチャプターID
+	description  ⇒　幸男本編予告　（※おそらく仕様書等に記述してある？要確認）
+	chara_mst_id  ⇒　chra_mstテーブルから検索
+
+	◆タイトルの登録（関連テーブル：title_mst）
+	※　（管理画面）ストーリ＞本編＞チャプター編集＞獲得称号　に表示される
+	SQL
+	INSERT INTO 'title_mst' VALUES
+	(id, chra_mst, タイトル内容, sort, 0, 0, 0）
+	( 〃　)
+	※　a・ｂルート×２（Premium・Sweet)　＝　４をインサートする
+	id　⇒　連番の最後になるid
+	タイトル内容　⇒　ENDがつくもの（※　仕様書要確認）
+	sort　⇒　？？？
+
+	◆メッセージを変更（関連テーブル：chara_mst）
+	SQL
+	UPDATE chara_mst SET
+	message_no_ticket = '文言' ,
+	message_story_p_shortage = '文言' ,
+	message_story_p_clear = '文言' ,
+	message_mission_clear = '文言' 
+	where id = chara_id;
+	※　ここでのchara_idは別のキャラ？
+	※　文言についてはよくわからん。

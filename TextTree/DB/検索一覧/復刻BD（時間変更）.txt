@@ -1,0 +1,30 @@
+
+// セット販売管理
+手順１．　アイテムに関連するセット販売マスタIDを取得
+select * from combined_sale_item where item_mst_id
+IN(914,915,1132,1186,1269,1270,1342,1350,1523,1635,1752)
+手順２．　一応念の為に確認
+select * from combined_sale_mst where id
+IN(51,61,64,69,72,79,85,97);
+手順３．　アップデートする
+UPDATE combined_sale_mst SET start = 1464706800 ,end = 1467298799 where id
+IN(47,51,58,61,64,69,72,79,85,97);
+
+// BDイベント管理
+select * from birthday_event_mst where combined_sale_mst_id
+IN(51,61,64,69,72,79,85,97);
+UPDATE birthday_event_mst SET start = 1464706800 ,end = 1467298800 where id
+IN(14,15,16,17,18);
+
+
+/***************************************************
+* 今回実際にやったSQL文（ 5PF )
+***************************************************/
+UPDATE birthday_event_mst SET start = 1464706800 ,end = 1467298799
+where id IN(12,13,14,15,16,17,18);
+
+UPDATE combined_sale_mst SET start = 1464706800 ,end = 1467298799 where id
+IN(47,51,58,61,64,69,72,79,85,97);
+
+UPDATE shop_item_list SET start = 1464706800 ,end = 1467298799 WHERE id
+IN(550,551,552,597,598,694,695,696,739,740,741,785,786,836,837,885,886,971,972,973,1042,1043,1044,1104,1105,1106);

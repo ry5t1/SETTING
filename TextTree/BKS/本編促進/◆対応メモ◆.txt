@@ -1,0 +1,25 @@
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+＊　50コインセットが表示されてしまう。
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+＜原因＞
+前回のイベントに参加したか否かを判別するテーブル
+event_user_parameter_report　
+にデータが入っていない。
+＜対応＞
+Jenkins＝＞企画さん用＝＞イベント艶めきど集計
+
+
+
+
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+＊　中間特典の付与確認SQL
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+select * from present5
+	where user_profile_id = 60275
+	and item_mst_id = 13043;
+
+
+select b.user_profile_id From collection_count_ranking a
+	left join collection_user_profile b ON a.collection_user_profile_id = b.id
+	where a.collection_mst_id = 17
+	and a.total_collection_count >= 210;

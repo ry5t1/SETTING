@@ -1,0 +1,17 @@
+	//  ローカルブランチコミット取り消し
+	git reset --hard HEAD^
+
+
+	//  リモートブランチプッシュ取り消し(testの場合）
+	git reset --hard HEAD^
+	git push -f origin test
+
+
+	// コミット取り消しを戻す
+	1. まずログを確認
+	git reflog
+	※　ログの@{番号}を戻したいところを確認
+
+	2. 戻す
+	git reset --hard "HEAD@{番号}"
+	

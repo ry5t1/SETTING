@@ -1,0 +1,16 @@
+	//origin / master の意味
+	origin = リモートのサーバ名
+	※　すでに$ git remote add git@github.com:DQNEO/sample.giｔ　的な感じで名前がある。
+	※　origin = URLのニックネーム的な
+	
+	master = ブランチ名
+	⇒つまり、リモートサーバのmasterブランチ
+
+	//ブランチ作成
+	git branch ｛ブランチ名｝
+
+	//ブランチの移動
+	git checkout ｛ブランチ名｝
+
+	//ブランチの作成と移動を一緒にやる
+	git checkout -b ｛ブランチ名｝ {リモートブランチ}

@@ -1,0 +1,46 @@
+	★　Webサーバ接続手順まとめ　★
+
+	～流れ概要～
+	（Cygwin）eclipseのプロジェクトフォルダへ移動
+	（NetExtender)VPNを接続
+	（Cygwin)踏み台サーバ接続
+	（Cygwin)Weｂサーバ接続
+
+
+	～詳細～
+	//vpnを接続する（NetExtnder)
+	ユーザ名：vital07
+	pass:vital@888_02	※定期的に変わる
+
+	//踏み台へ接続
+	[ SBS ]
+	$ ssh -i ~/.ssh/id_rsa_sbs sbs@sbs-manage01
+	[ BKS ]
+	$ ssh -i ~/.ssh/id_rsa_bks bks@bks-manage01
+	[ SGK ]
+	ssh -i ~/.ssh/id_rsa_orc_sgk sgk_appgl@210.140.173.192
+
+ssh -i ~/.ssh/id_rsa_orc_sgk sgk@10.133.30.2
+	※なぜかbks-manage01では入れない。
+	IP指定する：10.130.50.129
+	=> ssh -i ~/.ssh/id_rsa_bks bks@10.130.50.129
+	//テストサーバ接続
+	[ SBS ]
+	ssh sbs_amb@sbs-amb-web01
+	[ BKS ]
+	ssh bks_amb@bks-amb-web01
+
+
+　　　 ※　Wikiに詳細はのってる。
+　	サーバの種類に気をつける。
+　　	踏み台を介す。
+　　	vpnの接続を忘れずに。
+
+
+
+	☆各PF☆
+	AMB　⇒　ssh bks_amb@bks-amb-web01
+	GREE ⇒　ssh bks_gree@bks-amb-web01　※注意※
+	APP　⇒　ssh bks_app@bks-app-web01
+	GL　　⇒　ssh bks_gl@bks-gl-web01
+	Dゲーム ⇒　ssh bks_dc@bks-amb-web01　※注意※

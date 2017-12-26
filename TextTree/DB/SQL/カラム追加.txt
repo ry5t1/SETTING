@@ -1,0 +1,24 @@
+// カラム追加のSQL
+
+ALTER TABLE avatar_mission 
+	ADD target_course varchar(255) DEFAULT NULL AFTER premiere_flg;
+
+
+
+
+// カラム追加の手順
+◆ALTER文を準備する
+ALTER TABLE item_category_relation_mst
+	ADD actor_fashion_mst_id varchar(255) DEFAULT NULL AFTER value_id;
+
+◆DBへのカラム追加（ALTER文の実行）
+
+◆Modelクラスへのカラム追加（ソースの変更）
+※DBを先に追加しないと、障害が発生するかもしれないので注意
+
+
+
+ALTER TABLE item_category_relation_mst
+	ADD actor_cd varchar(255) DEFAULT NULL AFTER actor_fashion_mst_id;
+
+

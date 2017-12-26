@@ -1,0 +1,25 @@
+	<?php if($up->timestamp() < strtotime('2016-07-21 00:00:00')):?>
+		<!-- 幕末４コマしあたー-->
+		<div class="title_area" style="margin-top:10px">
+			<div style="padding:2px">
+				<hr size=1 width="95%" color="#ffffff;" style="border-top-color:#ffffff;">
+			</div>
+			<div  class="shadow">
+				<span style="color:#ffffff;font-weight: bold;">イベント限定！幕末４コマしあたー</span>
+			</div>
+			<div style="padding:2px">
+				<hr size=1 width="95%" color="#ffffff;" style="border-top-color:#ffffff;">
+			</div>
+		</div>
+		<div style="margin-top:5px;">
+			<?php echo $util->getImageTag('event/scenarioevent/'.$view_data['scenario_event_mst']['id'], 'comic',array('width'=>'100%')) ?>
+			<div style="margin-top:5px;text-align:left;">
+				<span style="color:<?php echo $base_color['txtcolor3']?>;">恋する気持ち</span>を合計
+				<span style="color:<?php echo $base_color['txtcolor3']?>;">200個</span>渡すと、
+				<span style="color:<?php echo $base_color['txtcolor3']?>;">イベント限定「幕末４コマしあたー」</span>が貰えるよ♥
+				<span style="color:<?php echo $base_color['txtcolor3']?>;">りんごをウサギに剥いてあげる桂を見た沖田は…</span>
+				続きは、GETして確かめてみてね♪<br />
+				※沖田・桂へ贈った恋する気持ちの合計数になります。
+			</div>
+		</div>
+	<?php endif; ?>

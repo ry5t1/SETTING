@@ -1,0 +1,16 @@
+	//　リモートブランチからローカルに新規にブランチを作成
+	git checkout -b ｛ローカルブランチ名｝ ｛リモートブランチ名｝
+	例：git checkout -b araki/branch origin/master など
+
+	//  ローカルブランチからリモートに新規ブランチを作成
+	git push origin ｛リモートブランチ名}
+	例：　git push origin araki/branch など
+
+
+
+
+
+	補足
+	//  ブランチ名を変更
+	git branch -m <古いブランチ名> <新しいブランチ名>
+
