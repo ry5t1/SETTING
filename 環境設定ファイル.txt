@@ -1,0 +1,18 @@
+[Atom 設定]
+GithubGist
+Personal Access Token: ae8803ffb591b3c8e6de4fb5330acecac56b8544 
+Gist id: 5d180092d6c637db30a4ba68dd39a2cb
+URL:https://gist.github.com/ry5t1/5d180092d6c637db30a4ba68dd39a2cb
+
+◆設定方法
+https://www.pc-weblog.com/atom-sync-settings/#github-gist
+
+[おすすめソフト]
+・Noeditor
+・JSON Editor
+（chrome-extension://lhkmoheomjbkfloacpgllgjcamhihfaj/index.html）
+・TortoiseGit（gitのマージをGUIでできる）
+
+[Chrome]
+・ColorPick Eyedropper
+
